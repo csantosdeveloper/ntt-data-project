@@ -1,0 +1,14 @@
+server:
+  servlet:
+    context-path: /ntt-data-project
+  port: 8080
+
+spring:
+  application:
+    name: Payment Project
+
+springdoc:
+  swagger-ui:
+    enabled: true
+  api-docs:
+    enabled: true
