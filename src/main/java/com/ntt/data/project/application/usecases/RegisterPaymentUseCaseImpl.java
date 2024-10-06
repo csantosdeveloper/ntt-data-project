@@ -39,7 +39,7 @@ public class RegisterPaymentUseCaseImpl implements RegisterPaymentUseCase {
                 .userId(request.getUserId())
                 .pan(request.getPan())
                 .amount(request.getAmount())
-                .currency(Optional.ofNullable(request.getCurrency()).orElse(Constants.DEFAULT_CURRENCY))
+                .currency(Optional.ofNullable(request.getCurrency()).map(String::toUpperCase).orElse(Constants.DEFAULT_CURRENCY))
                 .description(Optional.ofNullable(request.getDescription()).orElse(Constants.NO_DESCRIPTION))
                 .build();
     }

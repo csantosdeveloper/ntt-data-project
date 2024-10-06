@@ -26,6 +26,7 @@ public class RegisterPaymentRequest {
     @NotNull(message = "amount must not be null")
     private BigDecimal amount;
 
+    @Pattern(regexp = "^[A-Za-z]{3}$", message = "currency must have correct format (3 letters)")
     private String currency;
 
     private String description;
