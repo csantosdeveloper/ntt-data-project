@@ -19,10 +19,9 @@ import java.util.Date;
 public class Payment {
 
     @EmbeddedId
-    @Column(name = "PAYMENT_ID")
     private PaymentId paymentId;
 
-    @Column(name = "USER_ID", length = 9, nullable = false, unique = true)
+    @Column(name = "USER_ID", length = 9, nullable = false)
     private String userId;
 
     @Column(name = "PAN", length = 16, nullable = false)

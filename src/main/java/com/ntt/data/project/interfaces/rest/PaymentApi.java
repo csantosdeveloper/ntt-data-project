@@ -29,7 +29,7 @@ public interface PaymentApi {
                     content = @Content)
     })
     @PostMapping("/register")
-    ResponseEntity<Payment> registerPayment(@Valid @RequestBody RegisterPaymentRequest request);
+    ResponseEntity<PaymentResponse> registerPayment(@Validated @RequestBody RegisterPaymentRequest request);
 
     @Operation(summary = "Get a list of payments by user ID")
     @ApiResponses(value = {
@@ -41,6 +41,6 @@ public interface PaymentApi {
                     content = @Content)
     })
     @GetMapping("/{userId}")
-    ResponseEntity<List<Payment>> getPaymentsByUserId(@PathVariable String userId);
+    ResponseEntity<List<PaymentResponse>> getPaymentsByUserId(@PathVariable String userId);
 
 }

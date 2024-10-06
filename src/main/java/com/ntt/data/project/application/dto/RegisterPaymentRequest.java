@@ -1,5 +1,7 @@
 package com.ntt.data.project.application.dto;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,10 +15,15 @@ import java.math.BigDecimal;
 @Builder
 public class RegisterPaymentRequest {
 
+    @NotNull(message = "userId must not be null")
+    @Pattern(regexp = "^[0-9]{8}[A-Za-z]$", message = "userId must have correct format (8 digits plus 1 letter)")
     private String userId;
 
+    @NotNull(message = "pan must not be null")
+    @Pattern(regexp = "^\\d{16}$", message = "pan must have correct format (16 digits)")
     private String pan;
 
+    @NotNull(message = "amount must not be null")
     private BigDecimal amount;
 
     private String currency;
