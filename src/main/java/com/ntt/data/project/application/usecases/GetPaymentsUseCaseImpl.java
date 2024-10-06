@@ -2,6 +2,7 @@ package com.ntt.data.project.application.usecases;
 
 import com.ntt.data.project.application.dto.PaymentResponse;
 import com.ntt.data.project.application.exceptions.DatabaseException;
+import com.ntt.data.project.application.utils.PanMasker;
 import com.ntt.data.project.domain.exceptions.InvalidUserException;
 import com.ntt.data.project.application.mapper.PaymentMapper;
 import com.ntt.data.project.domain.model.entities.Payment;
@@ -39,7 +40,11 @@ public class GetPaymentsUseCaseImpl implements GetPaymentsUseCase {
 
     private List<PaymentResponse> getPaymentResponses(List<Payment> payments) {
         return payments.stream()
-                .map(paymentMapper::toResponse)
+                .map(payment -> {
+                    String maskedPan = PanMasker.mask(payment.getPan());
+                    payment.setPan(maskedPan);
+                    return paymentMapper.toResponse(payment);
+                })
                 .toList();
     }
 

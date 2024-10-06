@@ -11,10 +11,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.math.BigDecimal;
-
-import static com.ntt.data.project.application.utils.TestDataUtil.getPaymentResponse;
-import static com.ntt.data.project.application.utils.TestDataUtil.getRegisterPaymentRequest;
+import static com.ntt.data.project.application.utils.TestDataUtil.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
@@ -41,7 +38,7 @@ class RegisterPaymentUseCaseImplTest {
 
         PaymentResponse responses = registerPaymentUseCase.execute(getRegisterPaymentRequest());
 
-        assertEquals("1111222233334444", responses.getPan());
+        assertEquals("1111********4444", responses.getPan());
     }
 
     @Test
@@ -51,16 +48,6 @@ class RegisterPaymentUseCaseImplTest {
         Exception responseError = assertThrows(DatabaseException.class, () -> registerPaymentUseCase.execute(getRegisterPaymentRequest()));
 
         assertEquals("Error inserting payment request in database", responseError.getMessage());
-    }
-
-    private Payment getPayment() {
-        return Payment.builder()
-                .userId("12345678A")
-                .pan("1111222233334444")
-                .amount(BigDecimal.valueOf(12.00))
-                .currency("EUR")
-                .description("Test")
-                .build();
     }
 
 }
