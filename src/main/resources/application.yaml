@@ -6,6 +6,16 @@ server:
 spring:
   application:
     name: Payment Project
+  datasource:
+    url: jdbc:postgresql://localhost:5432/database
+    username: myuser
+    password: mypassword
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    open-in-view: false
 
 springdoc:
   swagger-ui:

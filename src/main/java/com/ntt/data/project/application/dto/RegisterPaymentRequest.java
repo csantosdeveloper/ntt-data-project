@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 @Builder
 public class RegisterPaymentRequest {
 
-    private String user;
+    private String userId;
 
     private String pan;
 

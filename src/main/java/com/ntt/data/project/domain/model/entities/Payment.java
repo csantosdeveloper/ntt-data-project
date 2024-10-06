@@ -1,5 +1,7 @@
 package com.ntt.data.project.domain.model.entities;
 
+import com.ntt.data.project.domain.model.valueobjects.PaymentId;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,20 +14,35 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Entity
+@Table(name = "PAYMENTS")
 public class Payment {
 
-    private String paymentId;
+    @EmbeddedId
+    @Column(name = "PAYMENT_ID")
+    private PaymentId paymentId;
 
-    private String user;
+    @Column(name = "USER_ID", length = 9, nullable = false, unique = true)
+    private String userId;
 
+    @Column(name = "PAN", length = 16, nullable = false)
     private String pan;
 
+    @Column(name = "AMOUNT", precision = 10, scale = 2, nullable = false)
     private BigDecimal amount;
 
+    @Column(name = "CURRENCY", length = 3, nullable = false)
     private String currency;
 
-    private Date paymentDate = new Date();
+    @Column(name = "PAYMENT_DATE", nullable = false)
+    private Date paymentDate;
 
+    @Column(name = "DESCRIPTION", length = 100)
     private String description;
+
+    @PrePersist
+    protected void onCreate() {
+        paymentDate = new Date();
+    }
 
 }
