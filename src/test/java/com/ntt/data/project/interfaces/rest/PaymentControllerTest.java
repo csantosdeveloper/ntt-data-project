@@ -42,7 +42,6 @@ class PaymentControllerTest {
 
     @Test
     void registerPayment_Success() throws Exception {
-        // Arrange
         RegisterPaymentRequest request = new RegisterPaymentRequest();
         request.setUserId("12345678A");
         request.setPan("1234567812345678");
@@ -78,7 +77,6 @@ class PaymentControllerTest {
 
         when(paymentService.getPaymentsByUserId(userId)).thenReturn(paymentResponses);
 
-        // Act & Assert
         mockMvc.perform(get("/api/payments/{userId}", userId)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
