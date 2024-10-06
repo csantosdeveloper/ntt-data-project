@@ -4,7 +4,6 @@ import com.ntt.data.project.application.dto.PaymentResponse;
 import com.ntt.data.project.application.exceptions.DatabaseException;
 import com.ntt.data.project.application.mapper.PaymentMapper;
 import com.ntt.data.project.domain.exceptions.InvalidUserException;
-import com.ntt.data.project.domain.model.entities.Payment;
 import com.ntt.data.project.domain.repository.PaymentRepository;
 import com.ntt.data.project.domain.services.UserIdValidator;
 import org.junit.jupiter.api.Test;
@@ -13,9 +12,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.math.BigDecimal;
 import java.util.List;
 
+import static com.ntt.data.project.application.utils.TestDataUtil.getPayment;
 import static com.ntt.data.project.application.utils.TestDataUtil.getPaymentResponse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -46,7 +45,7 @@ class GetPaymentsUseCaseImplTest {
 
         List<PaymentResponse> responses = getPaymentsUseCase.execute(userId);
 
-        assertEquals("1111222233334444", responses.get(0).getPan());
+        assertEquals("1111********4444", responses.get(0).getPan());
     }
 
     @Test
@@ -69,16 +68,6 @@ class GetPaymentsUseCaseImplTest {
         Exception responseError = assertThrows(DatabaseException.class, () -> getPaymentsUseCase.execute(userId));
 
         assertEquals("Error finding payments in database", responseError.getMessage());
-    }
-
-    private Payment getPayment() {
-        return Payment.builder()
-                .userId("12345678A")
-                .pan("1111222233334444")
-                .amount(BigDecimal.valueOf(12.00))
-                .currency("EUR")
-                .description("Test")
-                .build();
     }
 
 }

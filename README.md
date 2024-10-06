@@ -71,20 +71,20 @@ _Request validations list._
 
 ### Register a payment
 
-![img.png](img/img_3.png)
-
 ![img.png](img/img.png)
+
+![img_2.png](img/img_2.png)
 
 ### List payments
 After creating some payments (two of them for user 12345678A)
 
-![img_1.png](img/img_1.png)
+![img_3.png](img/img_3.png)
 
-![img_2.png](img/img_2.png)
+![img_4.png](img/img_4.png)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- TEST -->
 ## TEST COVERAGE
 ### Test coverage excluding dto and model folders.
-![img.png](img/img_4.png)
+![img.png](img/img_5.png)
