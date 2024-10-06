@@ -1,0 +1,27 @@
+server:
+  servlet:
+    context-path: /ntt-data-project
+  port: 8080
+
+spring:
+  application:
+    name: Payment Project
+  datasource:
+    url: jdbc:postgresql://localhost:5432/database
+    username: myuser
+    password: mypassword
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+springdoc:
+  swagger-ui:
+    enabled: true
+  api-docs:
+    enabled: true
